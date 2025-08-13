@@ -2,6 +2,25 @@
 import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import { getAllDownloads } from '../config/downloads.js';
+
+const downloads = getAllDownloads();
+
+// Color theme mapping for backgrounds
+const colorThemes = {
+  green: '#86efac',
+  blue: '#93c5fd',
+  purple: '#c084fc',
+  yellow: '#fde047',
+  orange: '#fdba74',
+  pink: '#f8b4cb',
+  lime: '#bef264',
+  cyan: '#67e8f9',
+  indigo: '#a5b4fc',
+  teal: '#5eead4',
+  emerald: '#6ee7b7',
+  amber: '#fbbf24'
+};
 ---
 
 <Layout 
@@ -39,179 +58,63 @@ import Footer from '../components/Footer.astro';
       </div>
     </section>
 
-    <!-- Download Versions -->
+    <!-- Download Sections -->
     <section class="py-16">
       <div class="container mx-auto px-4">
-        <div class="max-w-4xl mx-auto space-y-2">
+        <div class="max-w-4xl mx-auto space-y-12">
           
-          <!-- Version 1.2 -->
-          <div style="background-color: #f8b4cb;" class="rounded-lg p-6 flex items-center justify-between">
-            <div class="flex-1">
-              <h3 class="text-2xl font-bold mb-2" style="color: #000000;">Forge Version (v1.2)</h3>
-              <div class="flex gap-6" style="color: #1f2937;">
-                <span>Size: 26.37 MB</span>
-                <span>Upload On: 13th Jan 2023</span>
-              </div>
+          <!-- Fapcraft Downloads -->
+          <div>
+            <h2 class="text-3xl font-bold text-white mb-6 text-center">Fapcraft Downloads</h2>
+            <div class="space-y-2">
+              {downloads.fapcraft.map((download) => (
+                <div 
+                  style={`background-color: ${colorThemes[download.colorTheme]};`} 
+                  class="rounded-lg p-6 flex items-center justify-between"
+                >
+                  <div class="flex-1">
+                    <h3 class="text-2xl font-bold mb-2" style="color: #000000;">{download.version}</h3>
+                    <div class="flex gap-6" style="color: #1f2937;">
+                      <span>Size: {download.size}</span>
+                      <span>Upload On: {download.uploadDate}</span>
+                    </div>
+                  </div>
+                  <a 
+                    href={download.downloadUrl}
+                    class="bg-gray-800 hover:bg-gray-700 text-white font-bold py-3 px-6 rounded-full transition-all duration-200 hover:scale-105"
+                  >
+                    Download Now
+                  </a>
+                </div>
+              ))}
             </div>
-            <a 
-              href="#" 
-              class="bg-gray-800 hover:bg-gray-700 text-white font-bold py-3 px-6 rounded-full transition-all duration-200 hover:scale-105"
-            >
-              Download Now
-            </a>
           </div>
 
-          <!-- Version 1.4.0 -->
-          <div style="background-color: #67e8f9;" class="rounded-lg p-6 flex items-center justify-between">
-            <div class="flex-1">
-              <h3 class="text-2xl font-bold mb-2" style="color: #000000;">Forge Version (v1.4.0)</h3>
-              <div class="flex gap-6" style="color: #1f2937;">
-                <span>Size: 51.92 MB</span>
-                <span>Upload On: 13th Jan 2023</span>
-              </div>
+          <!-- Forge Downloads -->
+          <div>
+            <h2 class="text-3xl font-bold text-white mb-6 text-center">Forge Downloads</h2>
+            <div class="space-y-2">
+              {downloads.forge.map((download) => (
+                <div 
+                  style={`background-color: ${colorThemes[download.colorTheme]};`} 
+                  class="rounded-lg p-6 flex items-center justify-between"
+                >
+                  <div class="flex-1">
+                    <h3 class="text-2xl font-bold mb-2" style="color: #000000;">{download.version}</h3>
+                    <div class="flex gap-6" style="color: #1f2937;">
+                      <span>Size: {download.size}</span>
+                      <span>Upload On: {download.uploadDate}</span>
+                    </div>
+                  </div>
+                  <a 
+                    href={download.downloadUrl}
+                    class="bg-gray-800 hover:bg-gray-700 text-white font-bold py-3 px-6 rounded-full transition-all duration-200 hover:scale-105"
+                  >
+                    Download Now
+                  </a>
+                </div>
+              ))}
             </div>
-            <a 
-              href="#" 
-              class="bg-gray-800 hover:bg-gray-700 text-white font-bold py-3 px-6 rounded-full transition-all duration-200 hover:scale-105"
-            >
-              Download Now
-            </a>
-          </div>
-
-          <!-- Version 1.5.2 -->
-          <div style="background-color: #fde047;" class="rounded-lg p-6 flex items-center justify-between">
-            <div class="flex-1">
-              <h3 class="text-2xl font-bold mb-2" style="color: #000000;">Forge Version (v1.5.2)</h3>
-              <div class="flex gap-6" style="color: #1f2937;">
-                <span>Size: 66.60 MB</span>
-                <span>Upload On: 13th Jan 2023</span>
-              </div>
-            </div>
-            <a 
-              href="#" 
-              class="bg-gray-800 hover:bg-gray-700 text-white font-bold py-3 px-6 rounded-full transition-all duration-200 hover:scale-105"
-            >
-              Download Now
-            </a>
-          </div>
-
-          <!-- Version 1.6.2 -->
-          <div style="background-color: #86efac;" class="rounded-lg p-6 flex items-center justify-between">
-            <div class="flex-1">
-              <h3 class="text-2xl font-bold mb-2" style="color: #000000;">Forge Version (v1.6.2)</h3>
-              <div class="flex gap-6" style="color: #1f2937;">
-                <span>Size: 77.13 MB</span>
-                <span>Upload On: 13th Jan 2023</span>
-              </div>
-            </div>
-            <a 
-              href="#" 
-              class="bg-gray-800 hover:bg-gray-700 text-white font-bold py-3 px-6 rounded-full transition-all duration-200 hover:scale-105"
-            >
-              Download Now
-            </a>
-          </div>
-
-          <!-- Version 1.6.8 -->
-          <div style="background-color: #fdba74;" class="rounded-lg p-6 flex items-center justify-between">
-            <div class="flex-1">
-              <h3 class="text-2xl font-bold mb-2" style="color: #000000;">Forge Version (v1.6.8)</h3>
-              <div class="flex gap-6" style="color: #1f2937;">
-                <span>Size: 94.75 MB</span>
-                <span>Upload On: 13th Jan 2023</span>
-              </div>
-            </div>
-            <a 
-              href="#" 
-              class="bg-gray-800 hover:bg-gray-700 text-white font-bold py-3 px-6 rounded-full transition-all duration-200 hover:scale-105"
-            >
-              Download Now
-            </a>
-          </div>
-
-          <!-- Version 1.6.9 -->
-          <div style="background-color: #34d399;" class="rounded-lg p-6 flex items-center justify-between">
-            <div class="flex-1">
-              <h3 class="text-2xl font-bold mb-2" style="color: #000000;">Forge Version (v1.6.9)</h3>
-              <div class="flex gap-6" style="color: #1f2937;">
-                <span>Size: 81.31 MB</span>
-                <span>Upload On: 13th Jan 2023</span>
-              </div>
-            </div>
-            <a 
-              href="#" 
-              class="bg-gray-800 hover:bg-gray-700 text-white font-bold py-3 px-6 rounded-full transition-all duration-200 hover:scale-105"
-            >
-              Download Now
-            </a>
-          </div>
-
-          <!-- Version 1.7.4 -->
-          <div style="background-color: #bef264;" class="rounded-lg p-6 flex items-center justify-between">
-            <div class="flex-1">
-              <h3 class="text-2xl font-bold mb-2" style="color: #000000;">Forge Version (v1.7.4)</h3>
-              <div class="flex gap-6" style="color: #1f2937;">
-                <span>Size: 42.14 MB</span>
-                <span>Upload On: 13th Jan 2023</span>
-              </div>
-            </div>
-            <a 
-              href="#" 
-              class="bg-gray-800 hover:bg-gray-700 text-white font-bold py-3 px-6 rounded-full transition-all duration-200 hover:scale-105"
-            >
-              Download Now
-            </a>
-          </div>
-
-          <!-- Version 1.7.5 -->
-          <div style="background-color: #fbbf24;" class="rounded-lg p-6 flex items-center justify-between">
-            <div class="flex-1">
-              <h3 class="text-2xl font-bold mb-2" style="color: #000000;">Forge Version (v1.7.5)</h3>
-              <div class="flex gap-6" style="color: #1f2937;">
-                <span>Size: 42.14 MB</span>
-                <span>Upload On: 13th Jan 2023</span>
-              </div>
-            </div>
-            <a 
-              href="#" 
-              class="bg-gray-800 hover:bg-gray-700 text-white font-bold py-3 px-6 rounded-full transition-all duration-200 hover:scale-105"
-            >
-              Download Now
-            </a>
-          </div>
-
-          <!-- Version 1.8.0 -->
-          <div style="background-color: #93c5fd;" class="rounded-lg p-6 flex items-center justify-between">
-            <div class="flex-1">
-              <h3 class="text-2xl font-bold mb-2" style="color: #000000;">Forge Version (v1.8.0)</h3>
-              <div class="flex gap-6" style="color: #1f2937;">
-                <span>Size: 42.15 MB</span>
-                <span>Upload On: 13th Jan 2023</span>
-              </div>
-            </div>
-            <a 
-              href="#" 
-              class="bg-gray-800 hover:bg-gray-700 text-white font-bold py-3 px-6 rounded-full transition-all duration-200 hover:scale-105"
-            >
-              Download Now
-            </a>
-          </div>
-
-          <!-- Version 1.9.0 -->
-          <div style="background-color: #c084fc;" class="rounded-lg p-6 flex items-center justify-between">
-            <div class="flex-1">
-              <h3 class="text-2xl font-bold mb-2" style="color: #000000;">Forge Version (v1.9.0)</h3>
-              <div class="flex gap-6" style="color: #1f2937;">
-                <span>Size: 42.57 MB</span>
-                <span>Upload On: 13th Jan 2023</span>
-              </div>
-            </div>
-            <a 
-              href="#" 
-              class="bg-gray-800 hover:bg-gray-700 text-white font-bold py-3 px-6 rounded-full transition-all duration-200 hover:scale-105"
-            >
-              Download Now
-            </a>
           </div>
 
         </div>
