@@ -1,0 +1,93 @@
+---
+export interface Props {
+  title: string;
+  description?: string;
+  keywords?: string;
+  ogImage?: string;
+  canonical?: string;
+}
+
+const { 
+  title, 
+  description = "Download Jenny Mod for Minecraft - The most popular Minecraft mod that adds a virtual girlfriend experience. Compatible with Java Edition and MCPE. Free download available.",
+  keywords = "Jenny Mod, Minecraft mod, virtual girlfriend, Minecraft addon, MCPE mod, Minecraft Java Edition, download Jenny Mod, Minecraft mods 2023",
+  ogImage = "/Jenny-Mod-Icon.webp",
+  canonical
+} = Astro.props;
+
+const currentUrl = canonical || Astro.url.href;
+const siteName = "JennyMod.Dev";
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <!-- Primary Meta Tags -->
+    <title>{title}</title>
+    <meta name="title" content={title} />
+    <meta name="description" content={description} />
+    <meta name="keywords" content={keywords} />
+    <meta name="author" content="JennyMod.Dev" />
+    <meta name="robots" content="index, follow" />
+    <meta name="language" content="English" />
+    <meta name="revisit-after" content="7 days" />
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href={currentUrl} />
+    
+    <!-- Sitemap -->
+    <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={currentUrl} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:site_name" content={siteName} />
+    <meta property="og:locale" content="en_US" />
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content={currentUrl} />
+    <meta property="twitter:title" content={title} />
+    <meta property="twitter:description" content={description} />
+    <meta property="twitter:image" content={ogImage} />
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    
+    <!-- Preconnect to external domains -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "Jenny Mod Official Website",
+        "url": "https://jenny-mod.dev",
+        "description": "Official website for Jenny Mod - The most popular Minecraft mod for virtual girlfriend experience",
+        "publisher": {
+          "@type": "Organization",
+          "name": "JennyMod.Dev"
+        },
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": "https://jenny-mod.dev/search?q={search_term_string}",
+          "query-input": "required name=search_term_string"
+        }
+      }
+    </script>
+  </head>
+  <body class="bg-gray-900 text-white">
+    <slot />
+  </body>
+</html>
